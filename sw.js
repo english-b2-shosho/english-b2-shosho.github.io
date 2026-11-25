@@ -1,4 +1,4 @@
-const CACHE = 'b2-pwa-v1';
+const CACHE = 'b2-pwa-v2';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-512-maskable.png'];
 self.addEventListener('install', (e) => {
     e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -6,12 +6,14 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys()
-            .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+            .then((keys) => Promise.all(keys.filter((k) => k.startsWith('b2-pwa-') && k !== CACHE).map((k) => caches.delete(k))))
             .then(() => self.clients.claim())
     );
 });
 self.addEventListener('fetch', (e) => {
     if (e.request.method !== 'GET') return;
+    const path = new URL(e.request.url).pathname;
+    if (path.startsWith('/sho2/')) return;
     e.respondWith(
         caches.match(e.request, { ignoreSearch: true }).then((hit) => hit || fetch(e.request).then((res) => {
             const copy = res.clone();
