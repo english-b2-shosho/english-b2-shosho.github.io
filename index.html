@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تعلّم الإنجليزية الحر — مستوى B2</title>
+<meta name="description" content="منصة تدريب إنجليزي مفتوحة لأي حد: ٨ وحدات، ٩٦ كلمة وتعبير، ٤٨ سؤال بالتصحيح والشرح فورًا.">
+<meta name="theme-color" content="#8b7cf6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="إنجليزية B2">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', Tahoma, 'Noto Kufi Arabic', 'Noto Sans Arabic', Arial, sans-serif;
+    background: linear-gradient(180deg, #dbe9fe 0%, #e9e4fb 100%);
+    background-attachment: fixed;
+    color: #1e2a4a;
+    min-height: 100vh;
+}
+.page { max-width: 680px; margin: 0 auto; padding: 22px 16px 40px; }
+h1 { font-size: 26px; margin: 6px 0 4px; line-height: 1.35; }
+.fact { font-size: 13px; color: rgba(30,42,74,.74); margin: 0 0 8px; }
+.intro { font-size: 14px; line-height: 1.8; margin: 0 0 18px; }
+.card {
+    background: #fff; border: 1.5px solid #d9d2f7; border-radius: 14px;
+    padding: 14px; margin-bottom: 16px;
+}
+.card.tinted { background: linear-gradient(135deg, #f0f9ff, #f5f3ff); }
+h2 { font-size: 17px; margin: 0 0 10px; }
+.sec { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #6d5fd0; margin: 14px 0 8px; }
+.sec:first-child { margin-top: 0; }
+.note { font-size: 12px; color: rgba(30,42,74,.74); margin: 8px 0 0; line-height: 1.7; }
+.progress-label { display: flex; justify-content: space-between; font-size: 13px; color: #3a4668; margin-bottom: 8px; }
+.bar { background: #e7e2fb; border-radius: 99px; height: 10px; overflow: hidden; }
+.bar > div { background: linear-gradient(90deg, #38bdf8, #a78bfa, #ff8a76); height: 100%; border-radius: 99px; transition: width .4s ease; }
+ol.steps { margin: 0; padding-inline-start: 22px; font-size: 14px; line-height: 2; }
+.pill {
+    display: inline-block; border: 1.5px solid #ffb3a7; background: #fff; color: #d94330;
+    border-radius: 99px; padding: 9px 20px; min-height: 40px; font-weight: 600; font-size: 14px;
+    font-family: inherit; cursor: pointer;
+}
+.pill:hover { background: #fff1ee; }
+.pill.ghostless { margin-top: 10px; }
+.unit { background: #fff; border: 1.5px solid #d9d2f7; border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+.unit-head {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 12px 14px; border: none; cursor: pointer;
+    background: linear-gradient(90deg, #f0f9ff, #f5f3ff);
+    font-family: inherit; text-align: start; color: #1e2a4a; min-height: 44px; font-size: 15px;
+}
+.unit:nth-of-type(even) .unit-head { background: linear-gradient(90deg, #f5f3ff, #fdf4f2); }
+.unit-num {
+    width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+    background: #8b7cf6; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 600;
+}
+.unit.is-done .unit-num { background: #0ea5e9; }
+.unit-titles { flex: 1; display: flex; flex-direction: column; }
+.unit-titles b { font-size: 15px; }
+.unit-titles span { font-size: 12px; color: #5a6584; }
+.unit-badge { font-size: 11px; padding: 2px 10px; border-radius: 99px; background: #ffe3de; color: #c2371f; border: 1px solid #ffb3a7; font-weight: 600; }
+.chev { color: #8b7cf6; font-size: 11px; transition: transform .2s; }
+.unit-head[aria-expanded="true"] .chev { transform: rotate(90deg); }
+.unit-body { border-top: 1.5px solid #e7e2fb; padding: 14px; }
+.words { list-style: none; margin: 0; padding: 0; }
+.words li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    padding: 6px 2px; border-bottom: 1px dashed #d9d2f7; font-size: 14px;
+}
+.words li:last-child { border-bottom: none; }
+.words .en { font-weight: 600; }
+.words .ar { color: #47517a; font-size: 13px; }
+.example {
+    background: #f0f9ff; border-radius: 10px; padding: 10px 12px;
+    border-inline-start: 3px solid #38bdf8;
+    font-size: 13px; margin-top: 10px; display: flex; flex-direction: column; gap: 2px;
+}
+.example span[dir="ltr"] { font-weight: 600; text-align: left; color: #0369a1; }
+.q { margin-bottom: 14px; }
+.q-text { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+.opt {
+    display: block; width: 100%; text-align: start; min-height: 44px;
+    background: #fff; border: 1.5px solid #d9d2f7; border-radius: 10px;
+    padding: 9px 12px; margin-bottom: 6px; font-size: 14px; cursor: pointer;
+    font-family: inherit; color: #1e2a4a;
+}
+.opt:hover:not(:disabled) { border-color: #8b7cf6; }
+.opt:disabled { cursor: default; }
+.opt.is-correct { border-color: #0ea5e9; background: #f0f9ff; box-shadow: inset 0 0 0 1px #0ea5e9; color: #0369a1; font-weight: 600; }
+.opt.is-wrong { border-color: #ed313e; color: #ed313e; box-shadow: inset 0 0 0 1px #ed313e; }
+.opt.is-dim { opacity: .55; }
+.feedback {
+    border-radius: 10px; padding: 10px 12px; font-size: 13px; margin-top: 2px;
+    display: flex; flex-direction: column; gap: 3px; background: #f5f3ff;
+}
+.feedback.is-correct b { color: #0369a1; }
+.feedback.is-wrong b { color: #ed313e; }
+.feedback span { color: #47517a; }
+.unit-result { border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 600; margin: 10px 0 0; }
+.unit-result.is-pass { background: linear-gradient(90deg, #e0f2fe, #ede9fe); }
+.unit-result.is-fail { background: #fef2f2; color: #b91c1c; }
+.final { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0; }
+.final-score {
+    font-size: 40px; font-weight: 700; line-height: 1;
+    background: linear-gradient(90deg, #0ea5e9, #8b7cf6, #ff6f61);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.final-score small { font-size: 16px; color: #5a6584; font-weight: 400; }
+.final-msg { font-size: 14px; text-align: center; margin: 0; line-height: 1.8; }
+.scope { background: #fff8ec; border: 1.5px solid #f5d9a8; border-radius: 14px; padding: 14px; font-size: 13px; line-height: 1.8; margin-bottom: 16px; }
+.scope b { display: block; margin-bottom: 4px; }
+.closing { text-align: center; font-size: 12px; color: rgba(30,42,74,.6); margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+    <h1>تعلّم الإنجليزية الحر — مستوى B2</h1>
+    <p class="fact" id="fact"></p>
+    <p class="intro">منصة تدريب مفتوحة لأي حد: اقرأ الدرس، جاوب على الأسئلة، وشوف التصحيح وشرح الإجابة ونتيجتك فورًا. المحتوى تدريبي على مستوى B2 (فوق المتوسط)، مش منهج كامل ولا اختبار مستوى معتمد.</p>
+
+    <div class="card">
+        <h2>تقدّمك</h2>
+        <div class="progress-label"><span>الأسئلة اللي جاوبت عليها</span><span id="counter"></span></div>
+        <div class="bar"><div id="barfill" style="width:0%"></div></div>
+        <p class="note">تقدّمك بيتحفظ على الجهاز ده بس، ومش بيتشارك مع حد.</p>
+    </div>
+
+    <div class="card tinted">
+        <h2>ثبّتيها على موبايلك</h2>
+        <p class="note" style="margin-top:0">التطبيق بيشتغل من المتصفح، وأي حد معاه الرابط يقدر يستخدمه. عشان يبقى قدامك زي أي تطبيق بأيقونته:</p>
+        <button class="pill" id="installBtn" style="display:none" type="button">ثبّتي التطبيق</button>
+        <p class="sec">على أندرويد (كروم)</p>
+        <ol class="steps">
+            <li>افتحي الرابط في متصفح كروم.</li>
+            <li>لو ظهرلك إشعار «تثبيت التطبيق» دوسي عليه، أو دوسي الثلاث نقط ⋮ واختاري «تثبيت التطبيق».</li>
+            <li>هتلاقي أيقونة التطبيق على شاشتك، بيفتح لوحده من غير متصفح.</li>
+        </ol>
+        <p class="sec">على آيفون (سفاري)</p>
+        <ol class="steps">
+            <li>افتحي الرابط في سفاري.</li>
+            <li>دوسي زرار المشاركة (المربع اللي فيه سهم لفوق).</li>
+            <li>اختاري «إضافة إلى الشاشة الرئيسية».</li>
+            <li>هتلاقي الأيقونة على شاشتك، بتفتح بملء الشاشة زي التطبيقات.</li>
+        </ol>
+        <p class="note">بعد أول فتح، التطبيق بيشتغل حتى من غير نت.</p>
+    </div>
+
+    <h2>الوحدات</h2>
+    <div id="units"></div>
+
+    <div class="card">
+        <h2>نتيجتك النهائية</h2>
+        <div id="final"></div>
+    </div>
+
+    <div class="scope">
+        <b>منصة تدريب، مش منهج معتمد</b>
+        دي ٨ وحدات تدريبية (٩٦ كلمة وتعبير و٤٨ سؤال) على مواضيع أساسية في مستوى B2، كمثال شغّال لشكل المنصة: التصحيح والشرح والنتيجة بيشتغلوا بالكامل، لكن المحتوى نفسه لسه مش منهج متكامل من الصفر للاحتراف، ولا اختبار تحديد مستوى معتمد.
+    </div>
+
+    <p class="closing">منصة تعلّم الإنجليزية الحر — نموذج تفاعلي مفتوح للتجربة.</p>
+</div>
+
+<script>
+const UNITS = [
+    {
+        title: 'الوحدة الأولى',
+        sub: 'عبّر عن رأيك وناقش بثقة',
+        words: [
+            ['Argue', 'يجادل / يدافع عن رأي'], ['Claim', 'يدّعي / يزعم'],
+            ['Convince', 'يقنع'], ['Point of view', 'وجهة نظر'],
+            ['On the other hand', 'من ناحية تانية'], ['Take into account', 'ياخد في الاعتبار'],
+            ['It depends', 'على حسب الظروف'], ['Strongly believe', 'يؤمن بشدة'],
+            ['Evidence', 'دليل / برهان'], ['Debate', 'نقاش / مناظرة'],
+            ['Attitude', 'موقف / سلوك'], ['Justify', 'يبرّر'],
+        ],
+        example: ['In my opinion, working from home saves time. On the other hand, some people argue that it weakens teamwork.', 'في رأيي، الشغل من البيت بيوفّر وقت. من ناحية تانية، في ناس بتجادل إنه بيضعّف روح الفريق.'],
+        quiz: [
+            { q: `إيه معنى كلمة <bdi>«Convince»</bdi>؟`, opts: ['يقنع', 'يجادل', 'يعتذر'], a: 0, why: 'Convince يعني يقنع حد بحاجة: He convinced me to try — قنعني أجرب.' },
+            { q: '«من ناحية تانية» بالإنجليزي:', opts: ['In addition', 'On the other hand', 'As a result'], a: 1, why: 'On the other hand بنستخدمها لما بنعرض الناحية التانية من الموضوع.' },
+            { q: `كمل: <bdi>«We should ___ the cost before deciding.»</bdi>`, opts: ['take into account', 'it depends', 'point of view'], a: 0, why: 'الجملة معناها: لازم ناخد التكلفة في الاعتبار قبل ما نقرر.' },
+            { q: `إيه أقرب معنى لـ <bdi>«Claim»</bdi>؟`, opts: ['يثبت بدليل', 'يدّعي', 'يوافق'], a: 1, why: 'Claim يعني يقول كلام بدون دليل مؤكد، عكسها prove يعني يثبت.' },
+            { q: '«دليل / برهان» بالإنجليزي:', opts: ['Attitude', 'Debate', 'Evidence'], a: 2, why: 'Evidence هو الدليل اللي بيقوّي كلامك في أي نقاش.' },
+            { q: `كمل: <bdi>«He tried to ___ his decision by explaining the reasons.»</bdi>`, opts: ['justify', 'argue', 'claim'], a: 0, why: 'Justify يعني يبرّر: بيشرح أسباب القرار عشان يدافع عنه.' },
+        ],
+    },
+    {
+        title: 'الوحدة الثانية',
+        sub: 'الشغل والطموح',
+        words: [
+            ['Responsibility', 'مسؤولية'], ['Achieve', 'يحقّق'],
+            ['Deadline', 'موعد نهائي'], ['Apply for', 'يقدّم على (وظيفة)'],
+            ['Skill', 'مهارة'], ['Manage', 'يدير / يتدبّر'],
+            ['Colleague', 'زميل شغل'], ['Gain experience', 'يكتسب خبرة'],
+            ['Interview', 'مقابلة عمل'], ['Promotion', 'ترقية'],
+            ['Resign', 'يستقيل'], ['Qualification', 'مؤهل'],
+        ],
+        example: ['She manages a small team and always finishes her tasks before the deadline.', 'هي بتدير فريق صغير ودايمًا بتخلّص مهامها قبل الموعد النهائي.'],
+        quiz: [
+            { q: '«موعد نهائي» بالإنجليزي:', opts: ['Deadline', 'Schedule', 'Meeting'], a: 0, why: 'Deadline هو الموعد النهائي اللي لازم نخلّص قبله.' },
+            { q: `إيه معنى <bdi>«Apply for a job»</bdi>؟`, opts: ['يترك وظيفة', 'يقدّم على وظيفة', 'يرفض وظيفة'], a: 1, why: 'Apply for a job يعني يقدّم طلب توظيف، وapply لوحدها مش بتكمل المعنى ده.' },
+            { q: `كمل: <bdi>«He worked hard to ___ his goals.»</bdi>`, opts: ['achieve', 'manage', 'apply'], a: 0, why: 'Achieve a goal يعني يحقّق هدفًا: تعب ووصله.' },
+            { q: '«زميل شغل» بالإنجليزي:', opts: ['Manager', 'Colleague', 'Client'], a: 1, why: 'Colleague هو زميل الشغل، أما manager فهو المدير.' },
+            { q: `إيه معنى <bdi>«Resign»</bdi>؟`, opts: ['يترقّى', 'يستقيل', 'يتقاعد'], a: 1, why: 'Resign يعني يستقيل من الشغل باختياره، مش لازم يكون سن التقاعد.' },
+            { q: `كمل: <bdi>«She got a ___ after two years of hard work.»</bdi>`, opts: ['promotion', 'interview', 'deadline'], a: 0, why: 'بعد سنتين شغل جاد، المنطقي إنها أخدت ترقية: promotion.' },
+        ],
+    },
+    {
+        title: 'الوحدة الثالثة',
+        sub: 'مشاعر ومعاني دقيقة',
+        words: [
+            ['Disappointed', 'محبَط / خاب ظنّه'], ['Relieved', 'مرتاح بعد قلق'],
+            ['Grateful', 'ممتنّ'], ['Embarrassed', 'محرَج'],
+            ['Proud', 'فخور'], ['Anxious', 'قلقان / متوتر'],
+            ['Curious', 'فضولي'], ['Frustrated', 'متضايق من العراقيل'],
+            ['Amazed', 'مندهش'], ['Furious', 'غاضب جدًا'],
+            ['Content', 'راضٍ وهادي'], ['Overwhelmed', 'مغمور بالضغط أو المشاعر'],
+        ],
+        example: ['I was anxious before the exam, but I felt relieved when I saw the questions.', 'كنت قلقان قبل الامتحان، لكن حسيت براحة لما شفت الأسئلة.'],
+        quiz: [
+            { q: `إيه معنى <bdi>«Relieved»</bdi>؟`, opts: ['مرتاح بعد قلق', 'متوتر', 'محرَج'], a: 0, why: 'Relieved هو إحساس الراحة بعد ما القلق يروح.' },
+            { q: '«ممتنّ» بالإنجليزي:', opts: ['Proud', 'Grateful', 'Curious'], a: 1, why: 'Grateful يعني ممتنّ، وبنقول grateful for something — ممتنّ لحاجة.' },
+            { q: `كمل: <bdi>«She felt ___ when she forgot her friend's name.»</bdi>`, opts: ['embarrassed', 'proud', 'relieved'], a: 0, why: 'لما نسيت اسم صاحبتها، الإحساس الطبيعي هو الإحراج: embarrassed.' },
+            { q: `عكس <bdi>«Calm»</bdi> (هادي) من كلمات الوحدة:`, opts: ['Grateful', 'Anxious', 'Curious'], a: 1, why: 'Anxious يعني قلقان ومتوتر، وهي عكس calm تمامًا.' },
+            { q: `إيه معنى <bdi>«Furious»</bdi>؟`, opts: ['حزين جدًا', 'غاضب جدًا', 'خايف جدًا'], a: 1, why: 'Furious أقوى درجات الغضب: مش بس زعلان، ده ثائر.' },
+            { q: `كمل: <bdi>«He was ___ by the amount of work.»</bdi>`, opts: ['overwhelmed', 'proud', 'curious'], a: 0, why: 'Overwhelmed يعني الإحساس إن الحاجة أكبر من قدرتك بكتير.' },
+        ],
+    },
+    {
+        title: 'الوحدة الرابعة',
+        sub: 'روابط بتخلي كلامك أقوى',
+        words: [
+            ['Although', 'بالرغم من إنّ'], ['However', 'لكن / إلا إنّ'],
+            ['Therefore', 'لذلك / وبالتالي'], ['In addition', 'بالإضافة لكده'],
+            ['Despite', 'بالرغم من (+ اسم)'], ['As a result', 'وكنتيجة لكده'],
+            ['Unless', 'إلا لو'], ['Meanwhile', 'في نفس الوقت'],
+            ['Furthermore', 'علاوة على ذلك'], ['Consequently', 'وبالتالي / نتيجة لذلك'],
+            ['On the contrary', 'على العكس'], ['Even though', 'بالرغم من إنّ (تأكيد أقوى)'],
+        ],
+        example: ['Although it was raining, we went out. As a result, we got completely wet!', 'بالرغم من إن الدنيا كانت بتمطر، خرجنا. وكنتيجة لكده، اتبلّينا خالص!'],
+        quiz: [
+            { q: '«بالرغم من إنّ» بالإنجليزي:', opts: ['Despite', 'Although', 'Unless'], a: 1, why: 'Although معناها بالرغم من إنّ وبتيجي قبل جملة كاملة. Despite بتيجي قبل اسم بس.' },
+            { q: `كمل: <bdi>«I was tired. ___, I finished my work.»</bdi>`, opts: ['Therefore', 'However', 'Meanwhile'], a: 1, why: 'However بتربط بين جملتين بينهم تضاد: كنت تعبان، لكن خلّصت شغلك.' },
+            { q: '«إلا لو» بالإنجليزي:', opts: ['Unless', 'Although', 'However'], a: 0, why: 'Unless يعني إلا لو: I won\'t go unless you come — مش هروح إلا لو جيت.' },
+            { q: 'إيه الرابط المناسب للتعبير عن نتيجة؟', opts: ['As a result', 'On the other hand', 'Although'], a: 0, why: 'As a result بتعرّف نتيجة اللي قبلها: الدنيا مطرت، وكنتيجة لكده اتبلّينا.' },
+            { q: `إيه معنى <bdi>«On the contrary»</bdi>؟`, opts: ['بالإضافة لكده', 'على العكس', 'في نفس الوقت'], a: 1, why: 'On the contrary بنستخدمها لما بنقول عكس الكلام اللي فات تمامًا.' },
+            { q: `كمل: <bdi>«___ the high price, they bought the house.»</bdi>`, opts: ['Despite', 'Although', 'Unless'], a: 0, why: 'Despite بتيجي قبل اسم (the high price)، أما although فلازم جملة كاملة بعدها.' },
+        ],
+    },
+    {
+        title: 'الوحدة الخامسة',
+        sub: 'السفر والأماكن',
+        words: [
+            ['Destination', 'وجهة سفر'], ['Luggage', 'حقائب'],
+            ['Delay', 'تأخير / يتأخر'], ['Book', 'يحجز'],
+            ['Abroad', 'في الخارج'], ['Sightseeing', 'معالم سياحية'],
+            ['Departure', 'مغادرة'], ['Arrival', 'وصول'],
+            ['Customs', 'جمارك'], ['Visa', 'تأشيرة'],
+            ['Accommodation', 'إقامة / سكن'], ['Explore', 'يستكشف'],
+        ],
+        example: ['We booked our flight early, but a long delay at the airport changed our plans.', 'حجزنا طيارتنا بدري، بس تأخير طويل في المطار غيّر خططنا.'],
+        quiz: [
+            { q: `إيه معنى <bdi>«Luggage»</bdi>؟`, opts: ['تذاكر', 'حقائب', 'تأشيرات'], a: 1, why: 'Luggage يعني شنط السفر. كلمة لا تُجمع: مينفعش luggages.' },
+            { q: '«تأشيرة» بالإنجليزي:', opts: ['Visa', 'Customs', 'Ticket'], a: 0, why: 'Visa هي التأشيرة، أما customs فهي الجمارك في المطار.' },
+            { q: `كمل: <bdi>«The flight had a two-hour ___.»</bdi>`, opts: ['delay', 'destination', 'arrival'], a: 0, why: 'تأخير ساعتين: a two-hour delay.' },
+            { q: `عكس <bdi>«Departure»</bdi> (مغادرة):`, opts: ['Arrival', 'Abroad', 'Delay'], a: 0, why: 'Departure مغادرة وarrival وصول: صالات المطار متقسمة عليهم.' },
+            { q: `إيه معنى <bdi>«Explore»</bdi>؟`, opts: ['يستكشف', 'يحجز', 'يغادر'], a: 0, why: 'Explore the city يعني يستكشف المدينة ويتفرج عليها.' },
+            { q: `كمل: <bdi>«You need a ___ to enter some countries.»</bdi>`, opts: ['visa', 'luggage', 'customs'], a: 0, why: 'دول كتير بتطلب تأشيرة (visa) قبل الدخول.' },
+        ],
+    },
+    {
+        title: 'الوحدة السادسة',
+        sub: 'الصحة ونمط الحياة',
+        words: [
+            ['Habit', 'عادة'], ['Exercise', 'تمرين / يتمرن'],
+            ['Diet', 'نظام غذائي'], ['Recover', 'يتعافى'],
+            ['Symptom', 'عَرَض / علامة مرض'], ['Appointment', 'موعد'],
+            ['Avoid', 'يتجنب'], ['Balance', 'توازن'],
+            ['Stress', 'ضغط نفسي'], ['Rest', 'راحة / يرتاح'],
+            ['Energy', 'طاقة'], ['Treatment', 'علاج'],
+        ],
+        example: ['Regular exercise and enough rest help your body recover from stress.', 'التمرين المنتظم والراحة الكافية بيساعدوا جسمك يتعافى من الضغط.'],
+        quiz: [
+            { q: `إيه معنى <bdi>«Recover»</bdi>؟`, opts: ['يتعب', 'يتعافى', 'ينام'], a: 1, why: 'Recover يعني يرجع لصحته بعد تعب أو مرض.' },
+            { q: '«عادة» بالإنجليزي:', opts: ['Habit', 'Hobby', 'Energy'], a: 0, why: 'Habit عادة بتتعمل كل يوم، أما hobby فهي هواية بتحبها.' },
+            { q: `كمل: <bdi>«You should ___ junk food to stay healthy.»</bdi>`, opts: ['avoid', 'enjoy', 'increase'], a: 0, why: 'عشان تحافظ على صحتك، المطلوب إنك تتجنب (avoid) الأكل المصنّع.' },
+            { q: `إيه معنى <bdi>«Symptom»</bdi>؟`, opts: ['علاج', 'عَرَض / علامة مرض', 'موعد'], a: 1, why: 'Symptom هو العَرَض اللي بيبيّن إن في حاجة، زي السخونية.' },
+            { q: '«ضغط نفسي» بالإنجليزي:', opts: ['Rest', 'Balance', 'Stress'], a: 2, why: 'Stress هو الضغط النفسي، وعكسه rest (راحة).' },
+            { q: `كمل: <bdi>«She made an ___ with the dentist.»</bdi>`, opts: ['appointment', 'exercise', 'treatment'], a: 0, why: 'Make an appointment يعني تحجز موعد عند الدكتور.' },
+        ],
+    },
+    {
+        title: 'الوحدة السابعة',
+        sub: 'التكنولوجيا والتعلّم',
+        words: [
+            ['Device', 'جهاز'], ['Download', 'يحمّل'],
+            ['Account', 'حساب'], ['Password', 'كلمة سر'],
+            ['Update', 'تحديث / يحدّث'], ['Screen', 'شاشة'],
+            ['Search', 'بحث / يبحث'], ['Application', 'تطبيق'],
+            ['Data', 'بيانات'], ['Connect', 'يتصل'],
+            ['Online', 'على الإنترنت'], ['Useful', 'مفيد'],
+        ],
+        example: ['I use this application to learn new words online every day.', 'بستخدم التطبيق ده أتعلم كلمات جديدة على الإنترنت كل يوم.'],
+        quiz: [
+            { q: `إيه معنى <bdi>«Password»</bdi>؟`, opts: ['حساب', 'كلمة سر', 'شاشة'], a: 1, why: 'Password كلمة السر، أما account فهو الحساب نفسه.' },
+            { q: '«جهاز» بالإنجليزي:', opts: ['Device', 'Data', 'Screen'], a: 0, why: 'Device أي جهاز: موبايل أو تابلت أو كمبيوتر.' },
+            { q: `كمل: <bdi>«Don't forget to ___ the app to get the new features.»</bdi>`, opts: ['update', 'search', 'connect'], a: 0, why: 'تحديث (update) التطبيق هو اللي بيجيب المميزات الجديدة.' },
+            { q: `إيه معنى <bdi>«Useful»</bdi>؟`, opts: ['مفيد', 'سريع', 'مجاني'], a: 0, why: 'Useful مفيد، من use (استخدام) + اللاحقة ful.' },
+            { q: '«بيانات» بالإنجليزي:', opts: ['Screen', 'Data', 'Search'], a: 1, why: 'Data يعني بيانات، زي بيانات النت أو بيانات حسابك.' },
+            { q: `كمل: <bdi>«You can study English ___ from your phone.»</bdi>`, opts: ['online', 'screen', 'account'], a: 0, why: 'Online يعني على الإنترنت: تذاكر من موبايلك في أي مكان.' },
+        ],
+    },
+    {
+        title: 'الوحدة الثامنة',
+        sub: 'العلاقات والمجتمع',
+        words: [
+            ['Trust', 'ثقة / يثق'], ['Support', 'دعم / يدعم'],
+            ['Respect', 'احترام / يحترم'], ['Neighbor', 'جار'],
+            ['Generation', 'جيل'], ['Tradition', 'تقليد موروث'],
+            ['Communication', 'تواصل'], ['Promise', 'وعد / يعد'],
+            ['Forgive', 'يسامح'], ['Rely on', 'يعتمد على'],
+            ['Introduce', 'يقدّم / يعرّف'], ['Relationship', 'علاقة'],
+        ],
+        example: ['Good communication builds trust in any relationship.', 'التواصل الكويس بيبني الثقة في أي علاقة.'],
+        quiz: [
+            { q: `إيه معنى <bdi>«Trust»</bdi>؟`, opts: ['وعد', 'ثقة', 'دعم'], a: 1, why: 'Trust يعني ثقة، وكفعل: I trust you — أنا بثق فيك.' },
+            { q: '«يسامح» بالإنجليزي:', opts: ['Forget', 'Forgive', 'Introduce'], a: 1, why: 'Forgive يسامح، أما forget فهو ينسى. ممكن تسامح من غير ما تنسى.' },
+            { q: `كمل: <bdi>«You can always ___ your close friends.»</bdi>`, opts: ['rely on', 'forgive', 'introduce'], a: 0, why: 'Rely on يعني يعتمد على حد ويثق إنه هيقف جنبه.' },
+            { q: `إيه معنى <bdi>«Generation»</bdi>؟`, opts: ['جار', 'جيل', 'علاقة'], a: 1, why: 'Generation يعني جيل: جيل أبوينا، جيلنا، جيل عيالنا.' },
+            { q: '«تقليد موروث» بالإنجليزي:', opts: ['Tradition', 'Communication', 'Relationship'], a: 0, why: 'Tradition تقليد بيتورثه الناس عبر الأجيال.' },
+            { q: `كمل: <bdi>«Let me ___ you to my family.»</bdi>`, opts: ['introduce', 'promise', 'support'], a: 0, why: 'Introduce you to someone يعني يعرّفك على حد لأول مرة.' },
+        ],
+    },
+];
+const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩';
+const ar = (n) => String(n).replace(/\d/g, d => AR_DIGITS[+d]);
+const KEY = 'b2-pwa-answers.v1';
+let answers = {};
+let canSave = true;
+try { answers = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { canSave = false; }
+const save = () => { if (canSave) { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) {} } };
+
+const totalQ = UNITS.reduce((n, u) => n + u.quiz.length, 0);
+const totalWords = UNITS.reduce((n, u) => n + u.words.length, 0);
+document.getElementById('fact').textContent = `${ar(UNITS.length)} وحدات · ${ar(totalWords)} كلمة وتعبير · ${ar(totalQ)} سؤال تفاعلي`;
+
+const openUnits = {};
+const firstUnfinished = UNITS.findIndex((u, ui) => u.quiz.some((_, qi) => (answers[String(ui)] || {})[String(qi)] === undefined));
+openUnits[String(firstUnfinished === -1 ? 0 : firstUnfinished)] = true;
+
+function verdict(ratio) {
+    if (ratio >= 0.85) return 'ممتاز! حلّيت أسئلة التدريب دي شبه كاملة، واضح إنك متمكّن من محتوى الوحدات دي.';
+    if (ratio >= 0.65) return 'كويس جدًا! راجع الوحدات اللي غلطت فيها وهتثبّت الكلمات والتعبيرات دي أكتر.';
+    if (ratio >= 0.4) return 'بداية كويسة. راجع الدروس وجرب تاني، هتلاقي نفسك بتتحسن.';
+    return 'ابدأ بالدروس بهدوء وجرب تاني. الغلط جزء طبيعي من التعلّم.';
+}
+
+function render() {
+    let answeredTotal = 0, correctTotal = 0;
+    const unitsEl = document.getElementById('units');
+    unitsEl.innerHTML = '';
+    UNITS.forEach((unit, ui) => {
+        const ua = answers[String(ui)] || {};
+        const answeredCount = unit.quiz.filter((_, qi) => ua[String(qi)] !== undefined).length;
+        const score = unit.quiz.filter((q, qi) => ua[String(qi)] === q.a).length;
+        answeredTotal += answeredCount; correctTotal += score;
+        const done = answeredCount === unit.quiz.length;
+        const passMark = unit.quiz.length - 2;
+        const open = !!openUnits[String(ui)];
+
+        const div = document.createElement('div');
+        div.className = 'unit' + (done ? ' is-done' : '');
+        let body = '';
+        if (open) {
+            body = '<div class="unit-body">'
+                + `<p class="sec">📖 الدرس: ${ar(unit.words.length)} كلمة وتعبير</p>`
+                + '<ul class="words">' + unit.words.map(w => `<li><span class="en" dir="ltr">${w[0]}</span><span class="ar">${w[1]}</span></li>`).join('') + '</ul>'
+                + `<div class="example"><span dir="ltr">${unit.example[0]}</span>${unit.example[1]}</div>`
+                + '<p class="sec">✏️ الاختبار — جاوب وشوف التصحيح فورًا</p>'
+                + unit.quiz.map((q, qi) => {
+                    const picked = ua[String(qi)];
+                    const answered = picked !== undefined;
+                    const correct = answered && picked === q.a;
+                    return '<div class="q">'
+                        + `<p class="q-text">${q.q}</p>`
+                        + q.opts.map((opt, oi) => {
+                            let cls = 'opt';
+                            if (answered) { if (oi === q.a) cls += ' is-correct'; else if (oi === picked) cls += ' is-wrong'; else cls += ' is-dim'; }
+                            return `<button type="button" class="${cls}" data-u="${ui}" data-q="${qi}" data-o="${oi}" ${answered ? 'disabled' : ''}><bdi>${opt}</bdi></button>`;
+                        }).join('')
+                        + (answered ? `<div class="feedback ${correct ? 'is-correct' : 'is-wrong'}" role="status"><b>${correct ? 'إجابة صحيحة' : `إجابة غلط — الصحيح: ${q.opts[q.a]}`}</b><span>${q.why}</span></div>` : '')
+                        + '</div>';
+                }).join('')
+                + (done ? `<div class="unit-result ${score >= passMark ? 'is-pass' : 'is-fail'}" role="status">${score >= passMark ? `برافو! ${ar(score)} من ${ar(unit.quiz.length)} — الوحدة دي اتعدّت` : `${ar(score)} من ${ar(unit.quiz.length)} — راجع الدرس وجرب تاني، عادي جدًا`}</div>` : '')
+                + (answeredCount > 0 ? `<button type="button" class="pill ghostless" data-retry="${ui}">أعد محاولة الوحدة دي</button>` : '')
+                + '</div>';
+        }
+        div.innerHTML = `<button type="button" class="unit-head" data-toggle="${ui}" aria-expanded="${open}">`
+            + `<span class="unit-num">${done ? '✓' : ar(ui + 1)}</span>`
+            + `<span class="unit-titles"><b>${unit.title}</b><span>${unit.sub}</span></span>`
+            + (done ? `<span class="unit-badge">${ar(score)} من ${ar(unit.quiz.length)}</span>` : '')
+            + '<span class="chev" aria-hidden="true">◀</span></button>' + body;
+        unitsEl.appendChild(div);
+    });
+
+    document.getElementById('counter').textContent = `${ar(answeredTotal)} من ${ar(totalQ)}`;
+    document.getElementById('barfill').style.width = (answeredTotal / totalQ * 100) + '%';
+
+    const finalEl = document.getElementById('final');
+    if (answeredTotal === totalQ) {
+        finalEl.innerHTML = '<div class="final" role="status">'
+            + `<span class="final-score">${ar(correctTotal)} <small>من ${ar(totalQ)}</small></span>`
+            + `<p class="final-msg">${verdict(correctTotal / totalQ)}</p>`
+            + '<button type="button" class="pill" data-reset="1">ابدأ من الأول</button></div>';
+    } else {
+        finalEl.innerHTML = `<p class="note" style="font-size:14px">جاوب على كل أسئلة الوحدات الثمانية عشان تشوف نتيجتك النهائية هنا. لسه فاضل ${ar(totalQ - answeredTotal)} سؤال.</p>`;
+    }
+}
+
+document.addEventListener('click', (e) => {
+    const t = e.target.closest('button');
+    if (!t) return;
+    if (t.dataset.toggle !== undefined) {
+        const k = t.dataset.toggle;
+        openUnits[k] = !openUnits[k];
+        render();
+    } else if (t.dataset.o !== undefined) {
+        const u = t.dataset.u, q = t.dataset.q, o = +t.dataset.o;
+        const ua = { ...(answers[u] || {}) };
+        if (ua[q] !== undefined) return;
+        ua[q] = o;
+        answers = { ...answers, [u]: ua };
+        save(); render();
+    } else if (t.dataset.retry !== undefined) {
+        const next = { ...answers };
+        delete next[t.dataset.retry];
+        answers = next;
+        save(); render();
+    } else if (t.dataset.reset !== undefined) {
+        answers = {};
+        save(); render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installBtn').style.display = '';
+});
+document.getElementById('installBtn').addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('installBtn').style.display = 'none';
+});
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+render();
+</script>
+</body>
+</html>
